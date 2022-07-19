@@ -19,7 +19,7 @@
 	<input type="button" name="up" value="Downv" onclick="goDown()">
 	<input type="button" name="up" value="Left<" onclick="goLeft()">
 	<input type="button" name="up" value="Right>" onclick="goRight()">
-	<img src="snake.jpeg" width="100px" id="myImage">
+	<img src="snake.jpeg" width="100px" id="myImage" >
 	<img src="Food.png" width="15px" id="foodImage">
 	<div>
 		<h4 id="score">Score:</h4>
@@ -75,18 +75,30 @@
 		function startGoingUp(){
 			topDist--;
 			image.style.top=topDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+			}
 		}
 		function startGoingDown(){
 			topDist++;
 			image.style.top=topDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+			}
 		}
 		function startGoingLeft(){
 			leftDist--;
 			image.style.left=leftDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+			}
 		}
 		function startGoingRight(){
 			leftDist++;
 			image.style.left=leftDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+			}
 		}
 		function stopGoingUp(){
 			clearInterval(upinterval);
@@ -102,7 +114,7 @@
 		}
 		function stopGoingRight(){
 			clearInterval(rightinterval);
-			rigthinterval=null;
+			rightinterval=null;
 		}
 		function setFood(){
 			topFood=Math.random()*screen.availHeight;
