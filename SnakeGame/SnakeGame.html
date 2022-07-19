@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Snake Game</title>
+	<style>
+		#myImage{
+			position: absolute;
+			top: 250px;
+			left: 600px;
+		}
+		#foodImage{
+			position: absolute;
+		}
+		#main{
+			float: right;
+			width: 25%;
+			background-color: blue;
+			height: 600px;
+		}
+		#demo{
+			float: left;
+		}
+	</style>
+</head>
+<body onload="setFood()" onkeydown="keyRole(event)">
+	<div id="main">
+	<input type="button" name="up" value="Up^" onclick="goUp()">
+	<input type="button" name="up" value="Downv" onclick="goDown()">
+	<input type="button" name="up" value="Left<" onclick="goLeft()">
+	<input type="button" name="up" value="Right>" onclick="goRight()">
+	<div>
+		<div>
+			<h4>Score</h4>
+		</div>
+		<div id="score">
+
+		</div>
+		<div>
+			<h4>Life Remaining</h4>
+		</div>
+		<div id="life">
+			
+		</div>
+	</div>
+	</div>
+	<div id="demo">
+	<img src="Food.png" width="10px" id="foodImage">
+	<img src="snake.gif" width="100px" id="myImage" >
+	</div>
+	<script type="text/javascript">
+		var image = document.getElementById("myImage");
+		var food = document.getElementById("foodImage");
+		var score = document.getElementById("score");
+		var life = document.getElementById("life");
+		topDist=250;
+		leftDist=600;
+		topFood=0;
+		leftFood=0;
+		var upinterval;
+		var downinterval;
+		var leftinterval;
+		var rightinterval;
+		s=0;
+		l=3; 
+		function goUp(){
+			if (upinterval == null ){
+				image.style.transform="rotate(270deg)";
+				upinterval = setInterval(startGoingUp,10);
+				stopGoingDown();
+				stopGoingLeft();
+				stopGoingRight();
+			}
+		}
+		function goDown(){
+			if(downinterval==null){
+				image.style.transform="rotate(90deg)";
+				downinterval = setInterval(startGoingDown,10);
+				stopGoingUp();
+				stopGoingLeft();
+				stopGoingRight();
+			}
+		}
+		function goLeft(){
+			if(leftinterval==null){
+				image.style.transform="rotate(180deg)";
+				leftinterval = setInterval(startGoingLeft,10);
+				stopGoingUp();
+				stopGoingDown();
+				stopGoingRight();
+			}
+		}
+		function goRight(){
+			if(rightinterval==null){
+				image.style.transform="rotate(360deg)";
+				rightinterval = setInterval(startGoingRight,10);
+				stopGoingUp();
+				stopGoingDown();
+				stopGoingLeft();
+			}
+		}
+		function startGoingUp(){
+			topDist--;
+			image.style.top=topDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+				s++;
+				score.innerHTML=s;
+			}
+			if(topDist<=10){
+				topDist=250;
+				leftDist=600;
+				image.style.top=topDist+"px";
+				image.style.top=leftDist+"px";
+			}
+		}
+		function startGoingDown(){
+			topDist++;
+			image.style.top=topDist+"px";
+			console.log(topDist);
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+				s++;
+				score.innerHTML=s;
+			}
+			if(topDist+140>=screen.availHeight){
+				topDist=250;
+				leftDist=600;
+				image.style.top=topDist+"px";
+				image.style.left=leftDist+"px";
+			}
+		}
+		function startGoingLeft(){
+			leftDist--;
+			image.style.left=leftDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+				s++;
+				score.innerHTML=s;
+			}
+			if(leftDist<=10){
+				topDist=250;
+				leftDist=600;
+				image.style.top=topDist+"px";
+				image.style.left=leftDist+"px";
+			}
+
+		}
+		function startGoingRight(){
+			leftDist++;
+			image.style.left=leftDist+"px";
+			if(topDist-5<topFood-5 && leftDist-5<leftFood-5){
+				setFood();
+				s++;
+				score.innerHTML=s;
+			}
+			if(leftDist+100>=((75/100)*screen.availWidth)){
+				topDist=250;
+				leftDist=600;
+				image.style.top=topDist+"px";
+				image.style.left=leftDist+"px";
+			}
+		}
+		function stopGoingUp(){
+			clearInterval(upinterval);
+			upinterval=null;
+		}
+		function stopGoingDown(){
+			clearInterval(downinterval);
+			downinterval=null;
+		}
+		function stopGoingLeft(){
+			clearInterval(leftinterval);
+			leftinterval=null;
+		}
+		function stopGoingRight(){
+			clearInterval(rightinterval);
+			rightinterval=null;
+		}
+		function setFood(){
+			topFood=Math.random()*(80/100)*screen.availHeight;
+			leftFood=Math.random()*(70/100)*screen.availWidth;
+			food.style.top=topFood+"px";
+			food.style.left=leftFood+"px";
+		}
+		function keyRole(e){
+			if(e.keyCode==65){
+				goLeft();
+			}
+			else if(e.keyCode==87){
+				goUp();
+			}
+			else if(e.keyCode==68){
+				goRight();
+			}
+			else if(e.keyCode==83){
+				goDown();
+			}
+		}
+	</script>
+</body>
+</html>
