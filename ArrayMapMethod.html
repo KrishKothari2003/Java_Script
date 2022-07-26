@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Array Map Method</title>
+</head>
+<body>
+	<script type="text/javascript">
+		// //includes method
+		student1=["krish","kothari","Rajkot"];
+		var ans = student1.includes("Rajkot");
+		console.log(ans);
+
+		student=[
+			{Name:"Krish",Surname:"Kothari",City:"Rajkot",Spi:7.4},
+			{Name:"Rushi",Surname:"Manani",City:"Rajkot",Spi:9.2}
+		]
+		// //find mathod
+		var ans = student.find((student)=>{return (student.Name=="Krish")});
+		console.log(ans);
+		var ans2 = student.find((student)=>{return (student.Name=="Rushi")});
+		console .log(ans2);
+		var ans3 = student.find((student)=>{return (student.Name=="Kothari")});
+		console.log(ans3);
+
+		// //every method
+		var ans4 = student.every((student)=>{if(student.Spi>2){return true}});
+		console.log(ans4);
+		var ans5 = student.every((student)=>{if(student.Spi>8){return true}});
+		console.log(ans5);
+
+		// //filter method
+		var ans6 = student.filter((student)=>{if(student.Spi>3){return true}});
+		console.log(ans6);
+		var ans7 = student.filter((student)=>{return (student.Spi>8)});
+		console.log(ans7);
+
+		// //forEach method
+		student.forEach((student)=>console.log(student.Name));
+
+		//spread method
+		var ans8 = ["rushi","manani","189",...student1];
+		console.log(ans8);
+
+		//findIndex method
+		var ans9 = student1.findIndex((student1)=>{return "Krish"});
+		console.log(ans9);
+	</script>
+</body>
+</html>
