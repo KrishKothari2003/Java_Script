@@ -1,0 +1,26 @@
+*{
+	box-sizing: border-box;
+}
+.MainBlock{
+	background-color: lightgrey;
+	width: 200px;
+	height: 150px;
+	border: 1px solid black;
+	position: fixed;
+	top: 250px;
+	left: 550px;
+	font-size: 40px;
+	text-align: center;
+}
+.ActiveGame{
+	background-color: green;
+	width: 200px;
+	height: 150px;
+	border: 1px solid black;
+	position: fixed;
+	top: 250px;
+	left: 550px;
+	font-size: 40px;
+	text-align: center;
+	display: none;
+}

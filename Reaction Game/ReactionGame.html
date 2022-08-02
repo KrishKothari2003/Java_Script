@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Reaction Game</title>
+	<link rel="stylesheet" type="text/css" href="ReactionGame.css">
+</head>
+<body>
+	<div class="MainBlock" onclick="startMainGame()" id="MainBlock"></br>Start</div>
+	<div class="ActiveGame" onclick="ActiveGame()" id="ActiveGame"><br/>Click</div>
+	<script type="text/javascript">
+		var mb = document.getElementById("MainBlock");
+		var ag = document.getElementById("ActiveGame");
+		var sec = 0;
+		function startMainGame(){
+			mb.style.paddingTop="20px";
+			mb.style.fontSize="30px";
+			mb.style.backgroundColor="tomato";
+			mb.innerHTML="</br>Be Ready.....";
+			var mainInterval = setInterval(tester,(10000*(Math.random())));
+		}
+		function tester(){
+			mb.style.display="none";
+			ag.style.display="block";
+			var endInterval = setInterval(timer,1);
+		}
+		function timer(){
+			sec++;
+		}
+		function ActiveGame(){
+			ag.innerHTML=sec;
+			stopInterval();
+		}
+		function stopInterval(){
+			clearInterval(timer);
+		}
+	</script>
+</body>
+</html>
